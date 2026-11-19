@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biografia </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="img.jpg">
+</head>
+<body>
+    <div>
+        <h1> historias que inspiran </h1>
+     <p> Madam C. J. Walker
+(23/12/1867 - 25/05/1919)
+Madam C. J. Walker, emprendedora estadounidense
+
+Emprendedora estadounidense
+–¡La perseverancia es mi lema!–
+
+La primera mujer millonaria en los Estados Unidos.
+Padres: Owen Breedlove y Minerva Anderson
+Cónyuges: Moisés McWilliams (m. 1882-f. 1887), John Davis (m. 1894-div. 1903), Charles Walker (m. 1906-div. 1913)
+Hijos: A'Lelia McWilliams
+Nombre: Sarah Breedlove
+Conocida por: Fundadora de Madam C. J. Walker Manufacturing Company</p>
+    
+<img src="img.jpg" alt="Madam C.J. Walker">
+
+<p>
+    <h3>sus fraces </h3>
+
+    <li>
+        –¡La perseverancia es mi lema!–
+        <br>
+        "No me avergüenzo de mi pasado; no me avergüenzo de mis humildes comienzos"
+
+    </li>
+
+</p>
+ 
+<p>Sarah Breedlove nació el 23 de diciembre de 1867 en Delta, Luisiana. Fue una de seis hijos; tuvo una hermana llamada Louvenia y cuatro hermanos: Alexander, James, Solomon, y Owen Jr. Sarah, sus padres y hermanos mayores fueron esclavos en la plantación Madison Parish de Robert W. Burney. Ella fue la primera hija en su familia en nacer en libertad luego de la Proclamación de Emancipación. Su madre murió en 1872, posiblemente de cólera. Su padre se volvió a casar y falleció.
+
+Quedó huérfana a los siete años. Sarah se trasladó a Vicksburg, Mississippi, a la edad de 10 años, donde vivió con Louvenia y su cuñado, Jesse Powell. Comenzó a trabajar de niña como empleada doméstica.[5] "Tuve pocas o ninguna oportunidad cuando empecé en la vida, ya que quedé huérfana y estuve sin madre ni padre desde que tenía siete años", contaba a menudo. También contaba que sólo había recibido tres meses de educación formal, que aprendió durante las clases de alfabetización de la escuela dominical de la iglesia a la que asistía durante sus primeros años
+</p></div>
+<nav class="navbar" aria-label="Main">
+  <div class="nav-container">
+    <a href="/" class="nav-logo">🌙 Nova</a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-menu" id="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/features" class="nav-link">Features</a></li>
+        <li><a href="/showcase" class="nav-link">Showcase</a></li>
+        <li class="nav-item has-dropdown">
+          <button class="nav-link nav-dropdown-toggle" type="button" aria-expanded="false">
+            Company
+            <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </button>
+          <ul class="nav-dropdown">
+            <li><a href="/about" class="nav-dropdown-link">About us</a></li>
+            <li><a href="/careers" class="nav-dropdown-link">Careers</a></li>
+            <li><a href="/press" class="nav-dropdown-link">Press</a></li>
+          </ul>
+        </li>
+        <li><a href="/join" class="nav-link cta">Join waitlist</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="nav-backdrop"></div>
+</nav>
+
+
+<script>
+(() => {
+  const navbar = document.querySelector('.navbar');
+  const toggle = navbar.querySelector('.nav-toggle');
+  const dropdowns = navbar.querySelectorAll('.has-dropdown');
+
+  function setMenu(open) {
+    navbar.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open);
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = open ? 'hidden' : '';  // no page scroll behind the menu
+  }
+
+  function closeDropdowns(except) {
+    dropdowns.forEach(item => {
+      if (item === except) return;
+      item.classList.remove('is-open');
+      item.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  toggle.addEventListener('click', () => setMenu(!navbar.classList.contains('is-open')));
+  navbar.querySelector('.nav-backdrop').addEventListener('click', () => setMenu(false));
+  navbar.querySelectorAll('.nav-menu a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+
+  // Dropdowns: click (or Enter / Space) toggles; on desktop hover opens them too.
+  dropdowns.forEach(item => {
+    const button = item.querySelector('.nav-dropdown-toggle');
+    button.addEventListener('click', () => {
+      const open = !item.classList.contains('is-open');
+      closeDropdowns(item);
+      item.classList.toggle('is-open', open);
+      button.setAttribute('aria-expanded', open);
+    });
+  });
+  document.addEventListener('click', e => { if (!navbar.contains(e.target)) closeDropdowns(); });
+
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    closeDropdowns();
+    setMenu(false);
+  });
+
+  // Back to the desktop layout: reset the mobile menu.
+  matchMedia('(min-width: 769px)').addEventListener('change', () => setMenu(false));
+
+  // Turn the bar solid once the page has scrolled.
+  const onScroll = () => navbar.classList.toggle('is-scrolled', window.scrollY > 10);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+
+      
+</body>
+</html>
